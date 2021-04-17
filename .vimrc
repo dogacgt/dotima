@@ -19,7 +19,7 @@ set tabstop=5
 set noswapfile
 set incsearch
 
-noremap <c-z> <nop> 
+noremap <c-z> <nop>
 nnoremap <leader>t :term<CR>
 map <leader>b :sp ~/Documents/bio.bib<CR>
 map <leader>g :Goyo<CR>
@@ -32,8 +32,12 @@ autocmd Filetype rmd map <F7> :w \| :!echo<space>"require(rmarkdown);<space>rend
 autocmd Filetype tex map <F7> :w \| !pdflatex<space><c-r>%<CR>
 autocmd Filetype c map <F7> :w<CR> \| :!gcc<space><c-r>%<CR> \| :!./a.out<CR>
 
-autocmd BufWritePre *[tex|rmd] %s/\s\+$//e	
+autocmd BufWritePre * %s/\s\+$//e
 autocmd BufWritePre *[tex|rmd] %s/\n\+\%$//e
 
+"disable auto-commenting new line
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+"give execute permission to .py files when created
+autocmd BufNewFile *.py w | !chmod +x <afile>
 

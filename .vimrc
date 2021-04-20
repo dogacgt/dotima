@@ -25,6 +25,7 @@ map <leader>b :sp ~/Documents/bio.bib<CR>
 map <leader>g :Goyo<CR>
 map <leader>o :!xdg-open %:r.pdf<CR>
 map <leader>n :NERDTreeToggle<CR>
+map <leader>= :normal gg=G<CR>
 map <C-_> gcc
 
 "compile *rmd, *tex and *c (and run a.out) with F7
@@ -40,4 +41,3 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 "give execute permission to .py files when created
 autocmd BufNewFile *.py w | !chmod +x <afile>
-

@@ -14,7 +14,7 @@ set -o vi
 bind -m vi-insert "\C-l":clear-screen #enable Ctrl+L, necessary for vi mode
 eval $(dircolors -b ~/.dircolors) #enable colors for ls
 
-export PS1="\[\e[0;31m\][\[\e[m\]\[\e[33m\]\u\[\e[m\]\[\e[93m\]@\[\e[m\]\[\e[1;32m\]\h\[\e[m\]\[\e[36m\]\w\[\e[m\]\[\e[34m\]]\[\e[m\]\[\e[35m\]\\$ \[\e[m\]"
+export PS1="\[\e[0;31m\][\[\e[m\]\[\e[33m\]\u\[\e[m\]\[\e[93m\]@\[\e[m\]\[\e[1;32m\]\h\[\e[m\] \[\e[36m\]\W\[\e[m\]\[\e[34m\]]\[\e[m\]\[\e[35m\]\\$ \[\e[m\]"
 
 alias cp="cp -i"
 alias df='df -h'

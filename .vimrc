@@ -23,7 +23,7 @@ noremap <c-z> <nop>
 nnoremap <leader>t :term<CR>
 map <leader>b :sp ~/Documents/bio.bib<CR>
 map <leader>g :Goyo<CR>
-map <leader>o :!xdg-open %:r.pdf<CR>
+map <leader>o :!xdg-open %:r.pdf >/dev/null 2>&1<CR>
 map <leader>n :NERDTreeToggle<CR>
 map <leader>= :normal gg=G<CR>
 map <C-_> gcc
@@ -35,6 +35,7 @@ autocmd Filetype c map <F7> :w<CR> \| :!gcc<space><c-r>%<CR> \| :!./a.out<CR>
 
 autocmd BufWritePre * %s/\s\+$//e
 autocmd BufWritePre *[tex|rmd] %s/\n\+\%$//e
+autocmd VimLeave *.tex !texclear %
 
 "disable auto-commenting new line
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o

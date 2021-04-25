@@ -1,0 +1,20 @@
+set shell bash
+set shellopts '-eu'
+set ifs "\n"
+set scrolloff 10
+
+map t shell
+map <backspace2> delete
+map <enter> open
+map x !$f
+map r push :rename<space>
+
+cmd open ${{
+	case $(file --mime-type $f -b) in
+		text/*) vim $fx;;
+		application/pdf) nohup zathura $fx >/dev/null 2>&1;;
+		image/*) feh -. -g 864x486 $fx >/dev/null 2>&1;;
+	esac
+}}
+
+cmd rename %[ -e $1 ] && printf "file exists" || mv $f $1

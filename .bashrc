@@ -20,10 +20,10 @@ alias df='df -h'
 alias free='free -m'
 alias ls='ls --color=auto --group-directories-first'
 alias la="ls -a"
-alias ll="ls -l"
+alias ll="ls -lh"
 alias grep='grep --colour=auto'
-alias mp3="youtube-dl --extract-audio --audio-format mp3"
-alias best="youtube-dl -x -f bestaudio/best"
+alias audio="youtube-dl -x -f bestaudio/best"
+alias video="youtube-dl -f bestvideo+bestaudio"
 alias r="R" #this is how lazy i am
 alias f="feh -. -g 864x486"
 alias v="vim"

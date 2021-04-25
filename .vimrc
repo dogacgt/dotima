@@ -15,7 +15,7 @@ set bg=dark
 set number relativenumber
 set mouse-=a
 set splitright splitbelow
-set tabstop=5
+set tabstop=4 shiftwidth=4
 set noswapfile
 set incsearch
 

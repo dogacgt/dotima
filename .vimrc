@@ -22,20 +22,30 @@ set autoread
 
 map <c-z> <nop>
 map <C-_> gcc
-map <C-w> <C-w>w
-tmap <C-w> <C-w>w
+tmap <C-n> <C-w><S-n>
 nnoremap <leader>n :NERDTreeToggle<CR>
 nnoremap <leader>g :Goyo<CR>
 nnoremap <leader>t :term<CR>
+nnoremap <leader>vt :vert term<CR>
 nnoremap <leader>b :sp ~/Documents/bio.bib<CR>
 nnoremap <leader>o :!xdg-open %:r.pdf >/dev/null 2>&1<CR>
 nnoremap <leader>= :normal gg=G<CR>
 
+"navigation mappings
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+tmap <C-h> <C-w>h
+tmap <C-j> <C-w>j
+tmap <C-k> <C-w>k
+tmap <C-l> <C-w>l
+
 "compile with F7
-autocmd BufNewFile,Filetype rmd map <F7> :w \| :!echo<space>"require(rmarkdown);<space>render('<c-r>%')"<space>\|<space>R<space>--vanilla<CR>
-autocmd BufNewFile,Filetype tex map <F7> :w \| !pdflatex<space><c-r>%<CR>
-autocmd BufNewFile,Filetype c map <F7> :w \| :!gcc<space><c-r>%<CR>
-autocmd BufNewFile,Filetype cc,cpp map <F7> :w \| :!c++<space><c-r>%<CR>
+autocmd Filetype rmd map <F7> :w \| :!echo<space>"require(rmarkdown);<space>render('<c-r>%')"<space>\|<space>R<space>--vanilla<CR>
+autocmd Filetype tex map <F7> :w \| !pdflatex<space><c-r>%<CR>
+autocmd Filetype c map <F7> :w \| :!gcc<space><c-r>%<CR>
+autocmd Filetype cc,cpp map <F7> :w \| :!c++<space><c-r>%<CR>
 
 "whitespace handling
 autocmd BufWritePre * %s/\s\+$//e

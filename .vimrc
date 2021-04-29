@@ -5,6 +5,7 @@ Plug 'tpope/vim-commentary'
 Plug 'morhetz/gruvbox'
 Plug 'junegunn/goyo.vim'
 Plug 'preservim/nerdtree'
+Plug 'vim-utils/vim-man'
 call plug#end()
 
 filetype plugin indent on
@@ -20,8 +21,9 @@ set noswapfile
 set incsearch
 set autoread
 
-map <c-z> <nop>
+map <C-z> <nop>
 map <C-_> gcc
+map <C-s> :w<CR>
 tmap <C-n> <C-w><S-n>
 nnoremap <leader>n :NERDTreeToggle<CR>
 nnoremap <leader>g :Goyo<CR>
@@ -55,8 +57,7 @@ autocmd BufWritePre *[tex|rmd] %s/\n\+\%$//e
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 "give execute permission in creation
-autocmd BufNewFile *.py w | :silent !chmod +x <afile>
-autocmd BufNewFile *.sh w | :silent !chmod +x <afile>
+autocmd BufNewFile *.py,*.sh w | :silent !chmod +x <afile>
 
 "texclear
 autocmd VimLeave *.tex !texclear %

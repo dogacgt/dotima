@@ -7,11 +7,12 @@ complete -cf sudo
 HISTSIZE=1000
 HISTFILESIZE=10000
 shopt -s histappend
+export HISTCONTROL=ignoredups:erasedups
 
 stty -ixon
 set -o vi
 bind -m vi-insert "\C-l":clear-screen #enable Ctrl+L, necessary for vi mode
-eval $(dircolors -b ~/.dircolors) #enable colors for ls
+eval $(dircolors "$XDG_CONFIG_HOME"/dircolors)
 
 export PS1="\[\e[0;31m\][\[\e[m\]\[\e[33m\]\u\[\e[m\]\[\e[93m\]@\[\e[m\]\[\e[1;32m\]\h\[\e[m\] \[\e[36m\]\W\[\e[m\]\[\e[34m\]]\[\e[m\]\[\e[35m\]\\$ \[\e[m\]"
 
@@ -24,6 +25,9 @@ alias ll="ls -lh"
 alias grep='grep --colour=auto'
 alias audio="youtube-dl -x -f bestaudio/best"
 alias video="youtube-dl -f bestvideo+bestaudio"
-alias r="R" #this is how lazy i am
-alias f="feh -. -g 864x486"
+alias r="R"
+alias f="feh -."
 alias v="vim"
+alias o="xdg-open"
+alias sys="inxi -F"
+alias oc="o ~/Documents/books/The\ C\ Programming\ Language\ -\ Kernighan\,\ Ritchie.pdf"

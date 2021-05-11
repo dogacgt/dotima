@@ -1,16 +1,10 @@
-set window-height 800
-set window-width 680
-
-set window-title-basename
-set window-title-page
-
-map <C-c> quit
+map <C-q> quit
+map <C-i> recolor
 map <Return> reload
 map <Space> toggle_fullscreen
-map <C-i> recolor
+map [fullscreen] <Space> toggle_fullscreen
 
 set scroll-step "100"
-set font "noto mono 10"
 set default-bg "#282828"
 
 set recolor

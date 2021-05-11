@@ -16,6 +16,7 @@ set number relativenumber
 set splitright splitbelow
 set mouse-=a
 set laststatus=2
+set encoding=utf-8
 set tabstop=4 shiftwidth=4
 set noswapfile
 set incsearch
@@ -33,6 +34,10 @@ nnoremap <leader>b :sp ~/Documents/bio.bib<CR>
 nnoremap <leader>o :!xdg-open %:r.pdf >/dev/null 2>&1<CR>
 nnoremap <leader>= :normal gg=G<CR>
 
+nnoremap <leader>a :!clear && ./a.out<CR>
+nnoremap <leader>s :!clear && shellcheck %<CR>
+nnoremap <leader>r :!biber %:r<CR>
+
 "navigation mappings
 map <C-h> <C-w>h
 map <C-j> <C-w>j
@@ -43,11 +48,11 @@ tmap <C-j> <C-w>j
 tmap <C-k> <C-w>k
 tmap <C-l> <C-w>l
 
-"compile with F7
-autocmd Filetype rmd map <F7> :w \| :!echo<space>"require(rmarkdown);<space>render('<c-r>%')"<space>\|<space>R<space>--vanilla<CR>
-autocmd Filetype tex map <F7> :w \| !pdflatex<space><c-r>%<CR>
-autocmd Filetype c map <F7> :w \| :!gcc<space><c-r>%<CR>
-autocmd Filetype cc,cpp map <F7> :w \| :!c++<space><c-r>%<CR>
+"compile
+autocmd Filetype rmd map <leader>c :w \| :!echo<space>"require(rmarkdown);<space>render('<c-r>%')"<space>\|<space>R<space>--vanilla<CR>
+autocmd Filetype tex map <leader>c :w \| !pdflatex<space><c-r>%<CR>
+autocmd Filetype c map <leader>c :w \| :!gcc<space><c-r>%<CR>
+autocmd Filetype cc,cpp map <leader>c :w \| :!c++<space><c-r>%<CR>
 
 "whitespace handling
 autocmd BufWritePre * %s/\s\+$//e
@@ -61,3 +66,6 @@ autocmd BufNewFile *.py,*.sh w | :silent !chmod +x <afile>
 
 "texclear
 autocmd VimLeave *.tex !texclear %
+
+au BufEnter,BufRead *conf* setf dosini
+autocmd BufRead,BufNewFile *.tex set filetype=tex

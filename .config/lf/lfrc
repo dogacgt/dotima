@@ -1,3 +1,4 @@
+set hidden true
 set shell bash
 set shellopts '-eu'
 set ifs "\n"

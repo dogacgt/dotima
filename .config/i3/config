@@ -1,0 +1,107 @@
+set $mod 						Mod4
+
+gaps inner 						15
+gaps outer 						15
+
+floating_modifier 				$mod
+font pango: 					mono 9
+focus_follows_mouse 			no
+for_window [class="^.*"] 		border pixel 0
+for_window [class="Spotify"] 	move to workspace 5
+
+# exec --no-startup-id 			nm-applet
+exec --no-startup-id 			xss-lock --transfer-sleep-lock -- i3lock --nofork
+
+exec_always --no-startup-id 	picom -bc
+exec_always --no-startup-id 	$HOME/.config/polybar/launch.sh
+exec_always --no-startup-id		feh --bg-scale /home/doga/Pictures/wall/aot_02.png
+
+# client.focused        		#181818 #181818 #c5ccd6 #181818 #181818
+# client.unfocused         		#000000 #000000 #6780a3 #000000 #000000
+# client.focused_inactive 		#282828 #5f676a #ffffff #484e50 #5f676a
+
+bindsym $mod+q 					kill
+bindsym $mod+Shift+c 			reload
+bindsym $mod+Shift+r 			restart
+bindsym $mod+d 					exec --no-startup-id dmenu_run
+bindsym $mod+Shift+e 			exec --no-startup-id qdbus org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout -1 -1 -1
+
+bindsym $mod+m 					exec $MUSIC
+bindsym $mod+b 					exec $BROWSER
+bindsym $mod+Return 			exec $TERMINAL
+
+bindsym $mod+apostrophe			split horizontal ;; exec $TERMINAL
+bindsym $mod+semicolon			split vertical ;; exec $TERMINAL
+
+bindsym $mod+h 					focus left
+bindsym $mod+j 					focus down
+bindsym $mod+k 					focus up
+bindsym $mod+l 					focus right
+
+bindsym $mod+Shift+h 			move left
+bindsym $mod+Shift+j 			move down
+bindsym $mod+Shift+k 			move up
+bindsym $mod+Shift+l 			move right
+
+bindsym $mod+g 					split h
+bindsym $mod+v 					split v
+
+bindsym $mod+f 					fullscreen toggle
+bindsym $mod+e 					layout toggle split
+
+bindsym $mod+Shift+space 		floating toggle
+bindsym $mod+space 				focus mode_toggle
+
+bindsym $mod+p 					focus parent
+bindsym $mod+c 					focus child
+
+bindsym $mod+mod2+KP_1 			workspace 1
+bindsym $mod+mod2+KP_2 			workspace 2
+bindsym $mod+mod2+KP_3 			workspace 3
+bindsym $mod+mod2+KP_4 			workspace 4
+bindsym $mod+mod2+KP_5 			workspace 5
+bindsym $mod+mod2+KP_6 			workspace 6
+bindsym $mod+mod2+KP_7 			workspace 7
+bindsym $mod+mod2+KP_8 			workspace 8
+bindsym $mod+mod2+KP_9 			workspace 9
+
+bindsym $mod+Shift+1 			move container to workspace number 1
+bindsym $mod+Shift+2 			move container to workspace number 2
+bindsym $mod+Shift+3 			move container to workspace number 3
+bindsym $mod+Shift+4 			move container to workspace number 4
+bindsym $mod+Shift+5 			move container to workspace number 5
+bindsym $mod+Shift+6 			move container to workspace number 6
+bindsym $mod+Shift+7 			move container to workspace number 7
+bindsym $mod+Shift+8 			move container to workspace number 8
+bindsym $mod+Shift+9 			move container to workspace number 9
+
+bindsym $mod+Shift+y 			resize shrink width 5 px or 5 ppt
+bindsym $mod+Shift+u 			resize shrink height 5 px or 5 ppt
+bindsym $mod+Shift+i 			resize grow height 5 px or 5 ppt
+bindsym $mod+Shift+o 			resize grow width 5 px or 5 ppt
+
+bindsym $mod+s 					gaps inner current plus 4
+bindsym $mod+Shift+s 			gaps inner current minus 4
+bindsym $mod+Shift+d			gaps inner current set 0; gaps outer current set 0
+
+# Use pactl to adjust volume in PulseAudio.
+set $refresh_i3status 			killall -SIGUSR1 i3status
+bindsym XF86AudioRaiseVolume 	exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +2% && $refresh_i3status
+bindsym XF86AudioLowerVolume 	exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -2% && $refresh_i3status
+bindsym XF86AudioMute 			exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym XF86AudioMicMute 		exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+
+# Plasma compatibility improvements
+for_window [class="Plasma"] 									floating enable; border none
+for_window [class="krunner"] 									floating enable; border none
+for_window [class="Klipper"] 									floating enable; border none
+for_window [class="plasmashell"] 								floating enable;
+for_window [window_role="pop-up"] 								floating enable
+for_window [class="systemsettings"] 							floating enable
+for_window [title="plasma-desktop"] 							floating enable; border none
+for_window [class="Plasmoidviewer"] 							floating enable; border none
+for_window [class="(?i)*nextcloud*"] 							floating disable
+for_window [title="Desktop — Plasma"] 							kill; floating enable; border none
+for_window [window_role="task_dialog"] 							floating enable
+no_focus [class="plasmashell" window_type="notification"]
+for_window [class="plasmashell" window_type="notification"] 	border none, move right 700px, move down 450px

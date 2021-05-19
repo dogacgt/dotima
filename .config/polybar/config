@@ -28,7 +28,7 @@ foreground = ${colors.foreground}
 line-size = 3
 line-color = #f00
 
-border-size = 2
+border-size = 0
 border-color = #00000000
 
 padding-left = 0
@@ -52,7 +52,7 @@ type = custom/script
 interval = 1
 format-prefix = " "
 format = <label>
-exec = python $HOME/.config/polybar/spotify_status.py  -p ',' --playpause-font=2 -f '{play_pause} {artist} - {song}'
+exec = python $HOME/.config/polybar/spotify_status.py -t 50 -p ',' --playpause-font=2 -f '{play_pause} {artist} - {song}'
 format-underline = ${colors.spotify-color}
 format-foreground = ${colors.spotify-color}
 label-foreground = ${colors.foreground}
